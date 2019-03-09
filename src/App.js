@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Layout, Menu, Icon } from "antd";
-import MovieCard from "../src/containers/app/movieCard";
+import MovieCardGrid from "./containers/app/movieCardGrid";
 import TopNav from "../src/containers/app/topNav";
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -14,7 +14,7 @@ class App extends Component {
         <Layout>
           <Sider>Sider</Sider>
           <Content>
-            <MovieCard />
+            <MovieCardGrid />
           </Content>
         </Layout>
         <Footer>Footer</Footer>

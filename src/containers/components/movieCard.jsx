@@ -16,16 +16,12 @@ class MovieCard extends Component {
     alert("More Clicked");
   };
   render() {
+    const { image, title, description } = this.props;
     return (
       <Card
         hoverable
         style={{ width: 300 }}
-        cover={
-          <img
-            alt="example"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          />
-        }
+        cover={<img alt="example" src={"images/posters/" + image }/>}
         actions={[
           <a onClick={this.like}>
             <Icon type="like" />
@@ -41,7 +37,7 @@ class MovieCard extends Component {
           </a>
         ]}
       >
-        <Meta title="Card title" description="This is the description" />
+        <Meta title={title} description={description} />
       </Card>
     );
   }
