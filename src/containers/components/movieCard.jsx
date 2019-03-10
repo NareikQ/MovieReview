@@ -20,7 +20,7 @@ class MovieCard extends Component {
     return (
       <Card
         hoverable
-        style={{ width: 300 }}
+        style={{ width: 250 }}
         cover={<img alt="example" src={"images/posters/" + image }/>}
         actions={[
           <a onClick={this.like}>
