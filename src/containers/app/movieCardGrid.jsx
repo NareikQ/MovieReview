@@ -17,7 +17,7 @@ const MainDiv = styled.div`
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
   .ant-card-hoverable:hover {
-    box-shadow: 4px 7px 7px 3px rgba(0, 0, 0, 0.3),
+    box-shadow: 7px 8px 8px 4px rgba(0, 0, 0, 0.3),
       0 2px 10px 0 rgba(0, 0, 0, 0.3);
     transition: all 0.7s ease-in-out;
     transform: scale(1.05);
@@ -66,8 +66,11 @@ const data = [
   }
 ];
 
+
 class MovieCardGrid extends Component {
-  state = {};
+  state = { movies: []};
+
+  
 
   render() {
     const movies = data.map(function(movie, i) {

@@ -7,7 +7,17 @@ const { Meta } = Card;
 class MovieCard extends Component {
   state = {};
   settingsClick = () => {
-    alert("Settings Clicked");
+    fetch(
+      "http://localhost:9000/documents/websites/moviereview/server/test.php"
+    )
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Bad response");
+        }
+        return response.json();
+      })
+      .then(data => console.log(data))
+      .catch(error => console.log('Error: ', error));
   };
   editClick = () => {
     alert("Edit Clicked");
@@ -21,7 +31,7 @@ class MovieCard extends Component {
       <Card
         hoverable
         style={{ width: 250 }}
-        cover={<img alt="example" src={"images/posters/" + image }/>}
+        cover={<img alt="example" src={"images/posters/" + image} />}
         actions={[
           <a onClick={this.like}>
             <Icon type="like" />
