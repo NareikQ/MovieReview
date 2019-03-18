@@ -7,17 +7,7 @@ const { Meta } = Card;
 class MovieCard extends Component {
   state = {};
   settingsClick = () => {
-    fetch(
-      "http://localhost:9000/documents/websites/moviereview/server/test.php"
-    )
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Bad response");
-        }
-        return response.json();
-      })
-      .then(data => console.log(data))
-      .catch(error => console.log('Error: ', error));
+    
   };
   editClick = () => {
     alert("Edit Clicked");
