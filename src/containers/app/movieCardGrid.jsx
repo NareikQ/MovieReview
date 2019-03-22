@@ -27,53 +27,68 @@ const data = [
   {
     image: "deadpool.jpg",
     title: "Deadpool",
-    description: "(2015)"
+    year: "(2015)"
   },
   {
     image: "2007-transformers.jpg",
     title: "Transformers",
-    description: "(2007)"
+    year: "(2007)"
   },
   {
     image: "BlackPanther.jpg",
     title: "BlackPanther",
-    description: "(2017)"
+    year: "(2017)"
   },
   {
     image: "avengersInfinity.jpg",
     title: "Avengers - Infinity War",
-    description: "(2018)"
+    year: "(2018)"
   },
   {
     image: "deadpool.jpg",
     title: "Deadpool",
-    description: "(2015)"
+    year: "(2015)"
   },
   {
     image: "2007-transformers.jpg",
     title: "Transformers",
-    description: "(2007)"
+    year: "(2007)"
   },
   {
     image: "BlackPanther.jpg",
     title: "BlackPanther",
-    description: "(2017)"
+    year: "(2017)"
   },
   {
     image: "avengersInfinity.jpg",
     title: "Avengers - Infinity War",
-    description: "(2018)"
+    year: "(2018)"
   }
 ];
 
-
 class MovieCardGrid extends Component {
-  state = { movies: []};
+  state = { movies: data };
 
-  
+  componentDidMount = () => {
+    this.getMovies();
+  };
+
+  getMovies = async () => {
+    let movies = {};
+    let state = this.state;
+
+    fetch("http://localhost:5000/api/movies")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(data => {
+        this.setState({movies: data});
+        console.log('movies', data);
+      });
+  };
 
   render() {
-    const movies = data.map(function(movie, i) {
+    const movies = this.state.movies.map(function(movie, i) {
       i++;
 
       return (
@@ -81,7 +96,7 @@ class MovieCardGrid extends Component {
           <MovieCard
             image={movie.image}
             title={movie.title}
-            description={movie.description}
+            year={movie.year}
           />
         </Col>
       );

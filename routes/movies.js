@@ -1,10 +1,11 @@
+const config = require('config');
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const config = require('../config/config');
+
 
 mongoose
-  .connect(`mongodb+srv://${config.mongo.user}:${config.mongo.password}@${config.mongo.url}?retryWrites=true`)
+  .connect(`mongodb+srv://${config.get('mongodb.user')}:${config.get('mongodb.password')}@${config.get('mongodb.url')}?retryWrites=true`)
   .then(() => console.log("Connected to mongoDb"))
   .catch(ex => console.log("Error: ", ex));
 
@@ -17,11 +18,10 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model("movie", movieSchema);
 
 router.get("/", async (req, res) => {
-  console.log("Here1");
-  const movies = await Movie.find({ year: { $gt: 2016 } })
-    .limit(5)
+  const movies = await Movie.find({ year: 2018, genres: 'Superhero' })
+    .limit(8)
     .sort({ title: -1 })
-    .select({ title: 1, year: 1 });
+    .select({ title: 1, year: 1, image: 1 });
 
   res.send(movies);
 });

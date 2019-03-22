@@ -16,7 +16,7 @@ class MovieCard extends Component {
     alert("More Clicked");
   };
   render() {
-    const { image, title, description } = this.props;
+    const { image, title, year } = this.props;
     return (
       <Card
         hoverable
@@ -37,7 +37,7 @@ class MovieCard extends Component {
           </a>
         ]}
       >
-        <Meta title={title} description={description} />
+        <Meta title={title} description={year} />
       </Card>
     );
   }
