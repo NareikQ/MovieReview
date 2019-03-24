@@ -83,7 +83,6 @@ class MovieCardGrid extends Component {
       })
       .then(data => {
         this.setState({movies: data});
-        console.log('movies', data);
       });
   };
 
@@ -97,6 +96,7 @@ class MovieCardGrid extends Component {
             image={movie.image}
             title={movie.title}
             year={movie.year}
+            id={movie._id}
           />
         </Col>
       );

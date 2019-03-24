@@ -1,11 +1,14 @@
-const config = require('config');
+const config = require("config");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-
 mongoose
-  .connect(`mongodb+srv://${config.get('mongodb.user')}:${config.get('mongodb.password')}@${config.get('mongodb.url')}?retryWrites=true`)
+  .connect(
+    `mongodb+srv://${config.get("mongodb.user")}:${config.get(
+      "mongodb.password"
+    )}@${config.get("mongodb.url")}?retryWrites=true`
+  )
   .then(() => console.log("Connected to mongoDb"))
   .catch(ex => console.log("Error: ", ex));
 
@@ -18,8 +21,8 @@ const movieSchema = new mongoose.Schema({
 const Movie = mongoose.model("movie", movieSchema);
 
 router.get("/", async (req, res) => {
-  const movies = await Movie.find({ year: 2018, genres: 'Superhero' })
-    .limit(8)
+  const movies = await Movie.find({ year: { $gt: 2015 }, genres: "Superhero" })
+    .limit(16)
     .sort({ title: -1 })
     .select({ title: 1, year: 1, image: 1 });
 
@@ -28,12 +31,11 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
-  console.log("Here2: ", id);
   if (!id) return res.status(400).send("Movie id not found");
   const movies = await Movie.find({ _id: id })
     .limit(5)
     .sort({ title: -1 })
-    .select({ title: 1, year: 1 });
+    .select({ title: 1, year: 1, cast: 1, genres: 1, image: 1 });
 
   if (movies.length === 0)
     return res.status(404).send("The movie with the given ID was not found");

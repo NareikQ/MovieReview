@@ -32,7 +32,7 @@ class App extends Component {
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ background: "#fff", padding: 24, minHeight: 800 }}>
+          <div style={{ background: "#fff", padding: 24, minHeight: 1500 }}>
             <MovieCardGrid />
           </div>
         </Content>
